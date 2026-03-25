@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Serendib Escapes | Explore Sri Lanka</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefcf5;
+            color: #1e2a2f;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+
+        /* custom container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* header / navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+            background: rgba(255, 252, 240, 0.96);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid #e9e2d4;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #c47b2e, #9b5e2c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo span {
+            color: #b5651e;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #2c3e2f;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #d97706;
+        }
+        .book-btn {
+            background: #d97706;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            color: white !important;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(217, 119, 6, 0.2);
+        }
+        .book-btn:hover {
+            background: #b45f06;
+            transform: translateY(-2px);
+        }
+
+        /* hero section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.45)), url('https://images.pexels.com/photos/161302/sri-lanka-beach-tropical-island-161302.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            animation: fadeUp 0.9s ease-out;
+        }
+        .hero-content h1 {
+            font-size: 3.4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 12px rgba(0,0,0,0.3);
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        .btn-primary {
+            background: #d97706;
+            border: none;
+            padding: 1rem 2.2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            background: #b45f06;
+            transform: scale(1.02);
+        }
+
+        /* search / quick form */
+        .search-card {
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+            padding: 1.8rem 2rem;
+            margin-top: -3rem;
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(2px);
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .input-group {
+            flex: 1;
+            min-width: 150px;
+        }
+        .input-group label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #5b4b3a;
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #e2dcd0;
+            border-radius: 60px;
+            font-family: inherit;
+            background: #fefaf2;
+            transition: 0.2s;
+        }
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #d97706;
+            box-shadow: 0 0 0 3px rgba(217,119,6,0.2);
+        }
+        .search-btn {
+            background: #1e5631;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 60px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .search-btn:hover {
+            background: #0f3b22;
+        }
+
+        /* destination section */
+        .section-title {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #2c3e2f;
+        }
+        .section-sub {
+            text-align: center;
+            color: #6b5a4e;
+            margin-bottom: 2.5rem;
+        }
+        .dest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .dest-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px -12px rgba(0,0,0,0.12);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .dest-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 22px 32px -14px rgba(0,0,0,0.2);
+        }
+        .dest-img {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.4s;
+        }
+        .dest-card:hover .dest-img {
+            transform: scale(1.02);
+        }
+        .dest-info {
+            padding: 1.5rem;
+        }
+        .dest-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .dest-info p {
+            color: #5a6b5a;
+            margin-bottom: 1rem;
+        }
+        .price-tag {
+            font-weight: 800;
+            color: #d97706;
+            font-size: 1.2rem;
+        }
+        .explore-link {
+            display: inline-block;
+            margin-top: 0.8rem;
+            font-weight: 600;
+            color: #1e5631;
+            text-decoration: none;
+        }
+        .explore-link i {
+            transition: 0.2s;
+        }
+        .explore-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* testimonial section */
+        .testimonials {
+            background: #f2ede3;
+            border-radius: 50px;
+            padding: 2.5rem 1.5rem;
+            margin: 3rem 0;
+        }
+        .testimonial-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .test-card {
+            background: white;
+            border-radius: 32px;
+            padding: 1.8rem;
+            max-width: 320px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+        }
+        .test-card i {
+            color: #d97706;
+            font-size: 1.8rem;
+            margin-bottom: 0.6rem;
+        }
+        .test-card p {
+            font-style: italic;
+            margin: 1rem 0;
+            color: #2b3b2c;
+        }
+        .user {
+            font-weight: 700;
+        }
+
+        /* cta banner */
+        .cta-banner {
+            background: linear-gradient(115deg, #1e3c2c, #2b4b35);
+            border-radius: 42px;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: white;
+            margin: 3rem 0;
+        }
+        .cta-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cta-banner button {
+            background: #f4a261;
+            border: none;
+            padding: 0.9rem 2.4rem;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-top: 1rem;
+            cursor: pointer;
+            color: #2c2c2c;
+        }
+
+        /* footer */
+        footer {
+            background: #1c2a1f;
+            color: #e2dccd;
+            padding: 2.5rem 2rem 1rem;
+            margin-top: 3rem;
+            border-radius: 40px 40px 0 0;
+        }
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .footer-col h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        .social i {
+            font-size: 1.4rem;
+            margin-right: 1rem;
+            color: #f7c873;
+            transition: 0.2s;
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            border-top: 1px solid #3f5540;
+            padding-top: 1.5rem;
+        }
+
+        /* modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        .modal-content {
+            background: white;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 32px;
+            padding: 2rem;
+            text-align: center;
+            animation: fadeUp 0.3s;
+        }
+        .modal-content input {
+            width: 100%;
+            margin: 1rem 0;
+            padding: 0.8rem;
+            border-radius: 40px;
+            border: 1px solid #ccc;
+        }
+        .close-modal {
+            float: right;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .form-row {
+                flex-direction: column;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+        }
+        .toast-msg {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #1e5631;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 500;
+            z-index: 1200;
+            opacity: 0;
+            transition: 0.2s;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">🌿 Serendib <span>Escapes</span></div>
+    <div class="nav-links">
+        <a href="#" class="active">Home</a>
+        <a href="#destinations">Destinations</a>
+        <a href="#testimonials">Stories</a>
+        <a href="#" id="navBookBtn" class="book-btn">Book Now</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Discover the Pearl of the Indian Ocean</h1>
+        <p>Golden beaches, misty highlands, ancient temples & wild safaris — Sri Lanka awaits.</p>
+        <button class="btn-primary" id="heroBookBtn">Plan Your Journey →</button>
+    </div>
+</section>
+
+<div class="container">
+    <!-- quick search card -->
+    <div class="search-card">
+        <div class="form-row">
+            <div class="input-group">
+                <label><i class="fas fa-map-marker-alt"></i> Destination</label>
+                <select id="destSelect">
+                    <option>Sigiriya Rock</option>
+                    <option>Ella & Nine Arches</option>
+                    <option>Kandy Temple</option>
+                    <option>Galle Fort</option>
+                    <option>Yala National Park</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label><i class="fas fa-calendar-alt"></i> Travel Date</label>
+                <input type="date" id="travelDate">
+            </div>
+            <div class="input-group">
+                <label><i class="fas fa-users"></i> Travelers</label>
+                <input type="number" id="travelers" value="2" min="1" max="12">
+            </div>
+            <button class="search-btn" id="quickSearchBtn"><i class="fas fa-search"></i> Explore Deals</button>
+        </div>
+    </div>
+
+    <!-- destinations section -->
+    <div id="destinations">
+        <h2 class="section-title">✨ Must-Visit Gems ✨</h2>
+        <p class="section-sub">From cultural triangles to tropical shores — experience authentic Sri Lanka</p>
+        <div class="dest-grid" id="destGrid"></div>
+    </div>
+
+    <!-- testimonials -->
+    <div id="testimonials" class="testimonials">
+        <h2 class="section-title" style="margin-top:0;">Traveler's Magic</h2>
+        <div class="testimonial-flex">
+            <div class="test-card">
+                <i class="fas fa-quote-left"></i>
+                <p>"The train ride from Kandy to Ella was surreal! Serendib Escapes organized everything perfectly. Loved the authentic village lunch."</p>
+                <div class="user">— Ayesha M., India</div>
+            </div>
+            <div class="test-card">
+                <i class="fas fa-quote-left"></i>
+                <p>"Witnessing leopards in Yala and relaxing in Mirissa – best honeymoon ever. Highly recommend the private tours."</p>
+                <div class="user">— Liam & Sophie, UK</div>
+            </div>
+            <div class="test-card">
+                <i class="fas fa-quote-left"></i>
+                <p>"Amazing hospitality, curated experiences. The team helped us climb Sigiriya at sunrise — unforgettable!"</p>
+                <div class="user">— Chen Wei, Singapore</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- cta banner -->
+    <div class="cta-banner">
+        <h2>Special Ayurvedic Wellness Package</h2>
+        <p>Rejuvenate with ancient healing + beach retreat. Up to 30% off for first 50 bookings.</p>
+        <button id="ctaBookBtn">Claim Offer →</button>
+    </div>
+</div>
+
+<footer>
+    <div class="container" style="padding:0">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Serendib Escapes</h4>
+                <p>Authentic travel experiences since 2015.<br>Let us craft your Sri Lankan story.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone-alt"></i> +94 77 123 4567</p>
+                <p><i class="fas fa-envelope"></i> hello@serendibescapes.lk</p>
+            </div>
+            <div class="footer-col social">
+                <h4>Follow the journey</h4>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-youtube"></i>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Serendib Escapes | Sri Lanka Travel Experiences
+        </div>
+    </div>
+</footer>
+
+<!-- Modal for booking -->
+<div id="bookingModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3><i class="fas fa-suitcase-rolling"></i> Plan Your Sri Lanka Trip</h3>
+        <input type="text" id="modalName" placeholder="Your Name" value="">
+        <input type="email" id="modalEmail" placeholder="Email address">
+        <input type="text" id="modalDest" placeholder="Preferred Destination" value="Sigiriya">
+        <button id="submitBookingBtn" class="btn-primary" style="background:#1e5631; width:100%">Send Request</button>
+        <p style="margin-top:12px; font-size:12px;">We'll reach out with custom itineraries!</p>
+    </div>
+</div>
+
+<div id="toastMsg" class="toast-msg">✨ Experience awaits</div>
+
+<script>
+    // Destination data array
+    const destinations = [
+        { name: "Sigiriya Rock Fortress", desc: "Ancient sky-high palace & UNESCO wonder with frescoes.", price: "From $89", img: "https://images.pexels.com/photos/14811991/pexels-photo-14811991.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop" },
+        { name: "Ella & Nine Arch Bridge", desc: "Lush green hills, scenic train ride & cloud forest.", price: "From $65", img: "https://images.pexels.com/photos/12757924/pexels-photo-12757924.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop" },
+        { name: "Kandy & Temple of Tooth", desc: "Sacred city, cultural dance & serene lake.", price: "From $75", img: "https://images.pexels.com/photos/14565805/pexels-photo-14565805.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop" },
+        { name: "Galle Dutch Fort", desc: "Colonial charm, boutique cafes & ocean breeze.", price: "From $59", img: "https://images.pexels.com/photos/2620784/pexels-photo-2620784.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop" },
+        { name: "Yala Safari", desc: "Leopards, elephants & exotic birds adventure.", price: "From $120", img: "https://images.pexels.com/photos/14500810/pexels-photo-14500810.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop" },
+        { name: "Mirissa Beach", desc: "Whale watching, golden sand & surf vibes.", price: "From $99", img: "https://images.pexels.com/photos/14095405/pexels-photo-14095405.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop" }
+    ];
+
+    function renderDestinations() {
+        const grid = document.getElementById('destGrid');
+        if (!grid) return;
+        grid.innerHTML = '';
+        destinations.forEach(dest => {
+            const card = document.createElement('div');
+            card.className = 'dest-card';
+            card.setAttribute('data-name', dest.name);
+            card.innerHTML = `
+                <div class="dest-img" style="background-image: url('${dest.img}'); background-size: cover;"></div>
+                <div class="dest-info">
+                    <h3>${dest.name}</h3>
+                    <p>${dest.desc}</p>
+                    <div class="price-tag">${dest.price}</div>
+                    <a href="#" class="explore-link explore-card">Discover More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            `;
+            // clicking on card explore or anywhere will open modal prefill destination
+            const exploreBtn = card.querySelector('.explore-card');
+            exploreBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openBookingModal(dest.name);
+            });
+            // also card click on image area (optional)
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('.explore-card')) return;
+                openBookingModal(dest.name);
+            });
+            grid.appendChild(card);
+        });
+    }
+
+    // modal handling
+    const modal = document.getElementById('bookingModal');
+    const closeModalSpan = document.querySelector('.close-modal');
+    const modalDestInput = document.getElementById('modalDest');
+    
+    function openBookingModal(destName = "Sigiriya Rock") {
+        if (modalDestInput) modalDestInput.value = destName;
+        if (modal) modal.style.display = 'flex';
+    }
+    
+    function closeModal() {
+        if (modal) modal.style.display = 'none';
+    }
+    
+    if (closeModalSpan) closeModalSpan.onclick = closeModal;
+    window.onclick = function(e) {
+        if (e.target === modal) closeModal();
+    }
+    
+    // show toast message
+    function showToast(message, duration = 2800) {
+        const toast = document.getElementById('toastMsg');
+        if (!toast) return;
+        toast.textContent = message;
+        toast.style.opacity = '1';
+        toast.style.transform = 'translateY(0)';
+        setTimeout(() => {
+            toast.style.opacity = '0';
+        }, duration);
+    }
+    
+    // booking submission from modal
+    const submitBtn = document.getElementById('submitBookingBtn');
+    if (submitBtn) {
+        submitBtn.addEventListener('click', () => {
+            const name = document.getElementById('modalName')?.value.trim() || 'Guest';
+            const email = document.getElementById('modalEmail')?.value.trim() || '';
+            const dest = document.getElementById('modalDest')?.value.trim() || 'Sri Lanka';
+            if (!email) {
+                showToast('✨ Please enter your email to get travel deals!', 2000);
+                return;
+            }
+            showToast(`🙏 Thank you ${name}! We’ll send dream itineraries for ${dest} soon.`, 3000);
+            closeModal();
+            // clear fields optionally
+            document.getElementById('modalName').value = '';
+            document.getElementById('modalEmail').value = '';
+        });
+    }
+    
+    // hero & nav book buttons
+    const heroBook = document.getElementById('heroBookBtn');
+    const navBook = document.getElementById('navBookBtn');
+    const ctaBook = document.getElementById('ctaBookBtn');
+    
+    if (heroBook) heroBook.onclick = () => openBookingModal("Custom Sri Lanka Tour");
+    if (navBook) navBook.onclick = () => openBookingModal("Personalized Package");
+    if (ctaBook) ctaBook.onclick = () => openBookingModal("Ayurvedic Wellness Package");
+    
+    // quick search button interaction
+    const quickBtn = document.getElementById('quickSearchBtn');
+    if (quickBtn) {
+        quickBtn.addEventListener('click', () => {
+            const destSelect = document.getElementById('destSelect')?.value;
+            const travelDate = document.getElementById('travelDate')?.value;
+            const travelers = document.getElementById('travelers')?.value;
+            let dateMsg = travelDate ? ` on ${travelDate}` : ' (flexible dates)';
+            showToast(`🔍 Exploring special offers for ${destSelect} for ${travelers} traveler(s)${dateMsg}. Get ready!`, 2800);
+            openBookingModal(destSelect);
+        });
+    }
+    
+    // extra: set minimum date for date picker (today)
+    const dateInput = document.getElementById('travelDate');
+    if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.min = today;
+        // optional default
+        if(!dateInput.value) {
+            let nextWeek = new Date();
+            nextWeek.setDate(nextWeek.getDate() + 7);
+            dateInput.value = nextWeek.toISOString().split('T')[0];
+        }
+    }
+    
+    // smooth scroll for navbar internal links
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId && targetId !== "#") {
+                const targetElem = document.querySelector(targetId);
+                if (targetElem) {
+                    e.preventDefault();
+                    targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    });
+    
+    // also destinations explore click, but we handled inside cards
+    
+    // load destinations
+    renderDestinations();
+    
+    // small interactive hover effect to enhance
+    console.log("Serendib Escapes — Sri Lanka travel inspiration ready!");
+</script>
+</body>
+</html>
